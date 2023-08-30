@@ -1,35 +1,53 @@
 #include "binary_trees.h"
 
-/**
-  * binary_tree_height - function returns the height of a binary tree
-  * @tree: Tree to measure
-  * Return: height of the tree
-  */
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t right, left;
+int balance_recursion(const binary_tree_t *tree, int count);
 
-	if (!tree || (!tree->left && !tree->right))
+/**
+ * binary_tree_balance - function measures the balance factor of a
+ * binary tree
+ * @tree: parameter
+ * Return: balance factor
+ * If tree is NULL, return 0
+ */
+int binary_tree_balance(const binary_tree_t *tree)
+{
+	int right_balance = 0;
+	int left_balance = 0;
+
+	if (tree == NULL)
 		return (0);
-	left = binary_tree_height(tree->left) + 1;
-	right = binary_tree_height(tree->right) + 1;
-	return (right > left ? right : left);
+
+	if (tree->left != NULL)
+		left_balance = balance_recursion(tree->left, 1);
+	if (tree->right != NULL)
+		right_balance = balance_recursion(tree->right, 1);
+
+	return (left_balance - right_balance);
 }
 
 /**
-  * binary_tree_balance - function checks to see if the binary tree is balanced
-  * @tree: parameter
-  * Return: if tree is weighted left, return positive
-  *         if tree is weighted right, return negative.
-  *         if tree is balanced, return 0
-  */
-int binary_tree_balance(const binary_tree_t *tree)
+ * balance_recursion - function that is for the aux function for
+ * recursion
+ * @tree: pointer to tree
+ * @count: counter of height
+ * Return: height
+ */
+int balance_recursion(const binary_tree_t *tree, int count)
 {
-	int left, right;
+	int count_r = 0;
+	int count_l = 0;
 
-	if (!tree)
-		return (0);
-	left = tree->left ? binary_tree_height(tree->left) + 1 : 0;
-	right = tree->right ? binary_tree_height(tree->right) + 1 : 0;
-	return (left - right);
+	if (tree->left != NULL)
+		count_l = balance_recursion(tree->left, count + 1);
+
+	if (tree->right != NULL)
+		count_r = balance_recursion(tree->right, count + 1);
+
+	if (tree->left == NULL && tree->right == NULL)
+		return (count);
+
+	if (count_r > count_l)
+		return (count_r);
+	else
+		return (count_l);
 }
