@@ -1,10 +1,16 @@
 #ifndef _BINARY_TREES_H_
 #define _BINARY_TREES_H_
 
+<<<<<<< HEAD
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+=======
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
+>>>>>>> 55a5ebe3bdd922bed326567cd149a24eb5cd4ff3
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -38,7 +44,10 @@ typedef struct levelorder_queue_s
 	struct levelorder_queue_s *next;
 } levelorder_queue_t;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 55a5ebe3bdd922bed326567cd149a24eb5cd4ff3
 void binary_tree_print(const binary_tree_t *tree);
 
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
@@ -82,7 +91,11 @@ heap_t *array_to_heap(int *array, size_t size);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
 
+<<<<<<< HEAD
 
 
 
 #endif /* _BINARY_TREES_H_ */
+=======
+#endif
+>>>>>>> 55a5ebe3bdd922bed326567cd149a24eb5cd4ff3
